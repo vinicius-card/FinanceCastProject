@@ -1,0 +1,63 @@
+<div class="jumbotron py-3">
+  <h1 class="display-4 text-center">Registro de Saidas</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+        <input type="hidden" name="ID" [value]="service.formData.ID" />
+        <div class="form-group">
+          <label>Descrição</label>
+          <input class="form-control form-control-lg" placeholder="Descrição da Saidas" name="Descricao"
+            #descricao="ngModel" [(ngModel)]="service.formData.descricao" required maxlength="45" minlength="4"
+            [class.invalid]="descricao.invalid && descricao.touched">
+        </div>
+        <div class="form-group">
+          <label>Data</label>
+          <input class="form-control form-control-lg" placeholder="Data da Saida" name="Data" #data="ngModel"
+            [(ngModel)]="service.formData.data" required [class.invalid]="data.invalid && data.touched">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Valor</label>
+            <input class="form-control form-control-lg" placeholder="Valor da Saida" name="Valor" #valor="ngModel"
+              [(ngModel)]="service.formData.valor" required maxlength="3" minlength="1"
+              [class.invalid]="valor.invalid && valor.touched">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Pacela</label>
+            <input class="form-control form-control-lg" placeholder="Número de Parcelas" name="Parcela"
+              #parcela="ngModel" [(ngModel)]="service.formData.parcela"
+              [class.invalid]="parcela.invalid && parcela.touched">
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">SALVAR</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Data</th>
+            <th>Parcelas</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let pd of service.list">
+          <tr *ngIf="pd.entrada == false">
+            <td (click)="populateForm(pd)">{{pd.descricao}}</td>
+            <td (click)="populateForm(pd)">{{pd.valor}}</td>
+            <td (click)="populateForm(pd)">{{pd.data}}</td>
+            <td (click)="populateForm(pd)">{{pd.parcela}}</td>
+            <td>
+              <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.ID)"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
