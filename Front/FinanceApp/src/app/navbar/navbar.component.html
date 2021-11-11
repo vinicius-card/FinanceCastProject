@@ -1,6 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-blue bg-dark">
+<nav class="navbar navbar-expand-lg navbar-secondary text-secondary bg-dark">
   <a class="navbar-brand" href="Caixa">CAIXA</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -15,8 +16,10 @@
         <a class="nav-link" href="Extrato">EXTRATO<span class="sr-only">(current)</span></a>
       </li>
     </ul>
-    <div class="form-inline my-2 my-lg-1">
-      <a>Saldo: </a>
+    <div class="form-inline my-2 my-lg-1 text-blue">
+      <tbody *ngFor="let pd of service.list">
+        <h3> Saldo Atual: R${{pd.saldoAtual}} </h3>
+      </tbody>
     </div>
   </div>
 </nav>

@@ -18,10 +18,10 @@ export class CaixaService {
     return this.http.post(this.baseURL, this.formData)
   }
   putCaixa(){
-    return this.http.put(`${this.baseURL}/${this.formData.ID}`, this.formData);
+    return this.http.put(`${this.baseURL}/${this.formData.id}`, this.formData);
   }
   deleteCaixa(){
-    return this.http.delete(`${this.baseURL}/${this.formData.ID}`);
+    return this.http.delete(`${this.baseURL}/${this.formData.id}`);
   }
   refreshList() {
     this.http.get(this.baseURL)

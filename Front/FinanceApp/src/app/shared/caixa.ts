@@ -1,4 +1,4 @@
 export class Caixa {
-  ID: number=0;
+  id: number=0;
   saldoAtual: number=0;
 }

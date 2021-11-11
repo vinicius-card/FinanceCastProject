@@ -2,36 +2,63 @@
   <h1 class="display-4 text-center">Extrato</h1>
 </div>
 <div class="container">
-  <form action="" class="form-inline">
-    <div class="form group mb-4">
-      <h3>Selecionar Período: {{filtroLista}}</h3>
-      <input typer="text" class="form-control mr-2" placeholder="Buscar">
-      <button class="btn btn-info btn-blue btn-sucess ">Buscar</button>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="filtroLista">
     </div>
-  </form>
-  <table class="table table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th>Descrição</th>
-        <th>Entrada/Saida</th>
-        <th>Data</th>
-        <th>Valor</th>
-        <th>Pacerlas</th>
-      </tr>
-    </thead>
-      <tr *ngFor="let entrada of service.list">
-        <td>{{entrada.descricao}}</td>
-        <td>{{entrada.tipo}}</td>
-        <td>{{entrada.data}}</td>
-        <td>{{entrada.valor}}</td>
-        <td>{{entrada.parcela}}</td>
-      </tr>
-    <tfoot>
-      <tr *ngIf="!service.list.length">
-        <td colspan="8">
-          <h4>Nenhuma entrada registrada</h4>
-        </td>
-      </tr>
-    </tfoot>
-  </table>
+    <div class="form-group col-md-2">
+      <select class="form-select" class="form-control" [(ngModel)]="botao">
+        <option>Todos</option>
+        <option>Entradas</option>
+        <option>Saidas</option>
+      </select>
+    </div>
+  </div>
+  <div class="col">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Descrição</th>
+          <th>Valor</th>
+          <th>Data</th>
+          <th>Parcelas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pesquisa of service.list">
+          <td>{{pesquisa.descricao}}</td>
+          <td>{{pesquisa.valor}}</td>
+          <td>{{pesquisa.data | date: 'dd-MM-yyyy'}}</td>
+          <td>{{pesquisa.parcela}}</td>
+          <td>
+            <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pesquisa.id)"></i>
+          </td>
+        </tr>
+      </tbody>
+      <!-- <tbody *ngIf="(botao == 'Entradas')">
+      <tbody *ngFor="let pd of service.list">
+        <tr *ngIf="pd.entrada == true">
+          <td (click)="populateForm(pd)">{{pd.descricao}}</td>
+          <td (click)="populateForm(pd)">{{pd.valor}}</td>
+          <td (click)="populateForm(pd)">{{pd.data | date: 'dd-MM-yyyy'}}</td>
+          <td (click)="populateForm(pd)">{{pd.parcela}}</td>
+          <td>
+            <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.id)"></i>
+          </td>
+        </tr>
+      </tbody> -->
+      <!-- <tbody *ngIf="(botao == 'Saidas')">
+        <tbody *ngFor="let pd of service.list">
+          <tr *ngIf="pd.entrada == false">
+            <td (click)="populateForm(pd)">{{pd.descricao}}</td>
+            <td (click)="populateForm(pd)">{{pd.valor}}</td>
+            <td (click)="populateForm(pd)">{{pd.data | date: 'dd-MM-yyyy'}}</td>
+            <td (click)="populateForm(pd)">{{pd.parcela}}</td>
+            <td>
+              <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.id)"></i>
+            </td>
+          </tr>
+        </tbody> -->
+    </table>
+  </div>
 </div>

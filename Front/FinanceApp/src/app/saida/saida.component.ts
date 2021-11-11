@@ -34,7 +34,7 @@ export class SaidaComponent implements OnInit {
     }
   }
   onSubmit(form: NgForm) {
-    if (this.service.formData.ID == 0) this.insertRecord(form);
+    if (this.service.formData.id == 0) this.insertRecord(form);
     else this.updateRecord(form);
   }
 

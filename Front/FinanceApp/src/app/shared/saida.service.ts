@@ -18,7 +18,7 @@ export class SaidaService {
   }
 
   putSaida() {
-    return this.http.put(`${this.baseURL}/${this.formData.ID}`, this.formData);
+    return this.http.put(`${this.baseURL}/${this.formData.id}`, this.formData);
   }
 
   deleteSaida(id: number) {

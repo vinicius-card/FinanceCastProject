@@ -4,30 +4,30 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
-        <input type="hidden" name="ID" [value]="service.formData.ID" />
+      <form class="was-validated" novalidate autocomplete="on" #form="ngForm" (submit)="onSubmit(form)">
+        <input type="hidden" name="ID" [value]="service.formData.id" />
         <div class="form-group">
           <label>Descrição</label>
-          <input class="form-control form-control-lg" placeholder="Descrição da Saidas" name="Descricao"
-            #descricao="ngModel" [(ngModel)]="service.formData.descricao" required maxlength="45" minlength="4"
+          <input type="text" class="form-control form-control-lg is-invalid" id="validationTextarea" placeholder="Descrição da Entradas" name="Descricao"
+            #descricao="ngModel" [(ngModel)]="service.formData.descricao" aria-describedby="validationServer04Feedback" required maxlength="45" minlength="2"
             [class.invalid]="descricao.invalid && descricao.touched">
         </div>
         <div class="form-group">
           <label>Data</label>
-          <input class="form-control form-control-lg" placeholder="Data da Saida" name="Data" #data="ngModel"
-            [(ngModel)]="service.formData.data" required [class.invalid]="data.invalid && data.touched">
+          <input type="date" class="form-control form-control-lg is-invalid" placeholder="Data da Saida" name="Data"
+            #data="ngModel" [(ngModel)]="service.formData.data" required [class.invalid]="data.invalid && data.touched">
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Valor</label>
-            <input class="form-control form-control-lg" placeholder="Valor da Saida" name="Valor" #valor="ngModel"
-              [(ngModel)]="service.formData.valor" required maxlength="3" minlength="1"
+            <input type="number" class="form-control form-control-lg is-invalid" placeholder="Valor da Saida" name="Valor"
+              #valor="ngModel" [(ngModel)]="service.formData.valor" required maxlength="10" minlength="1"
               [class.invalid]="valor.invalid && valor.touched">
           </div>
           <div class="form-group col-md-6">
             <label>Pacela</label>
-            <input class="form-control form-control-lg" placeholder="Número de Parcelas" name="Parcela"
-              #parcela="ngModel" [(ngModel)]="service.formData.parcela"
+            <input type="number" class="form-control form-control-lg is-invalid" placeholder="Número de Parcelas" name="Parcela"
+              #parcela="ngModel" [(ngModel)]="service.formData.parcela" required maxlength="2" minlength="1"
               [class.invalid]="parcela.invalid && parcela.touched">
           </div>
         </div>
@@ -50,10 +50,10 @@
           <tr *ngIf="pd.entrada == false">
             <td (click)="populateForm(pd)">{{pd.descricao}}</td>
             <td (click)="populateForm(pd)">{{pd.valor}}</td>
-            <td (click)="populateForm(pd)">{{pd.data}}</td>
+            <td (click)="populateForm(pd)">{{pd.data | date: 'dd-MM-yyyy'}}</td>
             <td (click)="populateForm(pd)">{{pd.parcela}}</td>
             <td>
-              <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.ID)"></i>
+              <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.id)"></i>
             </td>
           </tr>
         </tbody>
